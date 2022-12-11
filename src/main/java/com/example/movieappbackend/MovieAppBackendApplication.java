@@ -1,26 +1,32 @@
 package com.example.movieappbackend;
 
-import com.example.movieappbackend.configuration.MovieServiceConfiguration;
-import com.example.movieappbackend.controller.MovieController;
 import com.example.movieappbackend.repository.MovieRepository;
-import com.example.movieappbackend.service.IMovieService;
 import com.example.movieappbackend.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:app.properties")
-public class MovieAppBackendApplication {
+public class MovieAppBackendApplication implements CommandLineRunner {
 
 
-    private static Logger LOGGER = LoggerFactory.getLogger(MovieAppBackendApplication.class);
+    //private static Logger LOGGER = LoggerFactory.getLogger(MovieAppBackendApplication.class);
+    private  Logger logger = LoggerFactory.getLogger(MovieAppBackendApplication.class);
+    private final MovieService movieService;
+    private final MovieRepository movieRepository;
+
+    public MovieAppBackendApplication(MovieService movieService, MovieRepository movieRepository) {
+        this.movieService = movieService;
+        this.movieRepository = movieRepository;
+    }
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(MovieAppBackendApplication.class, args);
+        SpringApplication.run(MovieAppBackendApplication.class, args);
+/*      ApplicationContext applicationContext = SpringApplication.run(MovieAppBackendApplication.class, args);
         MovieRepository movieRepository = applicationContext.getBean(MovieRepository.class);
         MovieService movieService1 = applicationContext.getBean(MovieService.class);
         LOGGER.info("{}", movieService1);
@@ -32,8 +38,16 @@ public class MovieAppBackendApplication {
         System.out.println(movieController.getUrl());
 
         MovieServiceConfiguration conf = applicationContext.getBean(MovieServiceConfiguration.class);
-        System.out.println(conf.getUsername());
+        System.out.println(conf.getUsername());*/
 
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+
+        movieService.getAllMovies().getMovies().stream().forEach(getMovieByIdResponse -> System.out.println(getMovieByIdResponse.getMovie().getTitle()));
+        System.out.println(movieService.getMovieById(1L).getMovie().getTitle());
+        movieService.countTrackTime();
+        //System.out.println(movieService.getMovieById(9999L).getMovie().getTitle());;
+    }
 }

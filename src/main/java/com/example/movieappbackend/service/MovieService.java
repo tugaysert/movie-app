@@ -1,5 +1,7 @@
 package com.example.movieappbackend.service;
 
+
+import com.example.movieappbackend.aspect.TrackTime;
 import com.example.movieappbackend.dtos.*;
 import com.example.movieappbackend.entity.Movie;
 import com.example.movieappbackend.exception.EntityNotFoundException;
@@ -7,35 +9,33 @@ import com.example.movieappbackend.exception.ResourceNotFoundException;
 import com.example.movieappbackend.repository.MovieRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MovieService implements IMovieService{
+public class MovieService {
     private final MovieRepository movieRepository;
-    private final Deneme deneme;
+    private final Foo foo;
 
-    @Override
-    public Deneme getDeneme() {
-        return deneme;
+
+    public Foo getDeneme() {
+        return foo;
     }
 
-    public MovieService(MovieRepository movieRepository, Deneme deneme) {
+    public MovieService(MovieRepository movieRepository, Foo foo) {
         this.movieRepository = movieRepository;
-        this.deneme = deneme;
+        this.foo = foo;
     }
 
-    @Override
+
     public MovieRepository getMovieRepository() {
         return movieRepository;
     }
 
     // Create
     @Transactional
-    @Override
+
     public CreateMovieResponse createMovie(CreateMovieRequest createMovieRequest) {
         Movie movie = new Movie.MovieBuilder()
                 .setTitle(createMovieRequest.getTitle())
@@ -57,7 +57,7 @@ public class MovieService implements IMovieService{
     }
 
     // Read
-    @Override
+
 
     public GetMovieByIdResponse getMovieById(Long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
@@ -88,7 +88,8 @@ public class MovieService implements IMovieService{
                 .setGenre(movie.getGenre())
                 .setYear(movie.getYear());
     }
-    @Override
+
+
 
     public GetAllMoviesResponse getAllMovies() {
         List<Movie> movies = movieRepository.findAll();
@@ -102,7 +103,15 @@ public class MovieService implements IMovieService{
         return response;
     }
 
-    @Override
+    @TrackTime
+    public void countTrackTime() {
+        int x = 1000000000;
+        while (x>0){
+            x--;
+        }
+    }
+
+
     public void deleteMovie(Long id) {
         Movie movie = this.movieRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Movie with id " + id + " not found"));
