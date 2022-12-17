@@ -1,7 +1,6 @@
 package com.example.movieappbackend.controller;
 
 import com.example.movieappbackend.dtos.*;
-import com.example.movieappbackend.entity.Movie;
 import com.example.movieappbackend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

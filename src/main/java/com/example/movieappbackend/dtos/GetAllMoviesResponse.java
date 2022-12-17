@@ -1,7 +1,5 @@
 package com.example.movieappbackend.dtos;
 
-import com.example.movieappbackend.entity.Movie;
-
 import java.util.ArrayList;
 import java.util.List;
 

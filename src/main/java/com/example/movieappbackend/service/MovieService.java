@@ -9,6 +9,7 @@ import com.example.movieappbackend.exception.ResourceNotFoundException;
 import com.example.movieappbackend.repository.MovieRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,14 +19,17 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private final Foo foo;
 
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
 
     public Foo getDeneme() {
         return foo;
     }
 
-    public MovieService(MovieRepository movieRepository, Foo foo) {
+    public MovieService(MovieRepository movieRepository, Foo foo, KafkaTemplate<String, String> kafkaTemplate) {
         this.movieRepository = movieRepository;
         this.foo = foo;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
 
@@ -37,6 +41,7 @@ public class MovieService {
     @Transactional
 
     public CreateMovieResponse createMovie(CreateMovieRequest createMovieRequest) {
+
         Movie movie = new Movie.MovieBuilder()
                 .setTitle(createMovieRequest.getTitle())
                 .setDirector(createMovieRequest.getDirector())
@@ -46,6 +51,7 @@ public class MovieService {
                 .setYear(createMovieRequest.getYear())
                 .build();
         movie = movieRepository.save(movie);
+
         return new CreateMovieResponse()
                 .setId(movie.getId())
                 .setTitle(movie.getTitle())
@@ -61,6 +67,8 @@ public class MovieService {
 
     public GetMovieByIdResponse getMovieById(Long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
+        String senderMessage = "customerId: " + String.valueOf(movie.getId());
+        kafkaTemplate.send("review-transfer", senderMessage);
         return new GetMovieByIdResponse.GetMovieByIdResponseBuilder().setMovie(movie).build();
     }
 

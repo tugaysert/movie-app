@@ -1,6 +1,5 @@
 package com.example.movieappbackend.dtos;
 
-import com.example.movieappbackend.entity.Movie;
 public class UpdateMovieResponse {
     private Long id;
     private String title;
