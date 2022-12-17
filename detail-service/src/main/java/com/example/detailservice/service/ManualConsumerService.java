@@ -1,4 +1,4 @@
-package com.example.reviewservice.service;
+package com.example.detailservice.service;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

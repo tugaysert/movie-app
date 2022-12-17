@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class MockReviewService {
+public class MockDetailService {
 
-    private final Logger logger = LoggerFactory.getLogger(MockReviewService.class);
+    private final Logger logger = LoggerFactory.getLogger(MockDetailService.class);
 /*
-    @KafkaListener(topics = "review-transfer", groupId = "group-id")
+    @KafkaListener(topics = "detail-transfer", groupId = "group-id")
     public void consume(String message) {
         logger.info(String.format("Message receiver \n %s", message));
     }*/

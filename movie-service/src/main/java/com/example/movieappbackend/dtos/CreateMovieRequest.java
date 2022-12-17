@@ -1,7 +1,7 @@
 package com.example.movieappbackend.dtos;
 
-import com.example.movieappbackend.entity.Review;
-import com.example.movieappbackend.entity.Review;
+import com.example.movieappbackend.entity.Detail;
+import com.example.movieappbackend.entity.Detail;
 
 public class CreateMovieRequest {
     private String title;
@@ -11,7 +11,7 @@ public class CreateMovieRequest {
     private String genre;
     private int year;
 
-    private Review review;
+    private Detail detail;
 
     public CreateMovieRequest() {
     }
@@ -23,7 +23,7 @@ public class CreateMovieRequest {
         this.star = builder.star;
         this.genre = builder.genre;
         this.year = builder.year;
-        this.review = builder.review;
+        this.detail = builder.detail;
     }
 
     public String getTitle() {
@@ -50,8 +50,8 @@ public class CreateMovieRequest {
         return this.year;
     }
 
-    public Review getReview() {
-        return this.review;
+    public Detail getDetail() {
+        return this.detail;
     }
     public static class CreateMovieRequestBuilder {
         private String title;
@@ -61,7 +61,7 @@ public class CreateMovieRequest {
         private String genre;
         private int year;
 
-        private Review review;
+        private Detail detail;
 
         public CreateMovieRequestBuilder setTitle(String title) {
             this.title = title;
@@ -93,8 +93,8 @@ public class CreateMovieRequest {
             return this;
         }
 
-        public CreateMovieRequestBuilder setReview(Review review) {
-            this.review = review;
+        public CreateMovieRequestBuilder setDetail(Detail detail) {
+            this.detail = detail;
             return this;
         }
 

@@ -1,6 +1,6 @@
 package com.example.movieappbackend.entity;
 
-public class CreateReview {
+public class CreateDetail {
 
     private String text;
     private Long movieId;
@@ -13,7 +13,7 @@ public class CreateReview {
         this.movieId = movieId;
     }
 
-    public CreateReview() {
+    public CreateDetail() {
     }
 
     public String getText() {
@@ -24,14 +24,14 @@ public class CreateReview {
         this.text = text;
     }
 
-    public CreateReview(String text, Long movieId) {
+    public CreateDetail(String text, Long movieId) {
         this.text = text;
         this.movieId = movieId;
     }
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "Detail{" +
                 "text='" + text + '\'' +
                 '}';
     }

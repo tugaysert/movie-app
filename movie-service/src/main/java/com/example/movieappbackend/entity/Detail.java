@@ -1,10 +1,10 @@
 package com.example.movieappbackend.entity;
 
-public class Review {
+public class Detail {
 
     private String text;
 
-    public Review() {
+    public Detail() {
     }
 
     public String getText() {
@@ -15,14 +15,14 @@ public class Review {
         this.text = text;
     }
 
-    public Review(String text) {
+    public Detail(String text) {
         this.text = text;
 
     }
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "Detail{" +
                 "text='" + text + '\'' +
                 '}';
     }

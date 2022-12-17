@@ -1,6 +1,6 @@
-package com.example.reviewservice.config;
+package com.example.detailservice.config;
 
-import com.example.reviewservice.model.CreateReview;
+import com.example.detailservice.model.CreateDetail;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -40,9 +40,9 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, CreateReview> createReviewKafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String, CreateReview> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactoryCreateReview("createReviewGroup"));
+    public ConcurrentKafkaListenerContainerFactory<String, CreateDetail> createDetailKafkaListenerContainerFactory(){
+        ConcurrentKafkaListenerContainerFactory<String, CreateDetail> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactoryCreateDetail("createDetailGroup"));
         factory.setAutoStartup(true);
         return factory;
     }
@@ -62,7 +62,7 @@ public class KafkaConsumerConfig {
     }
 
 
-    private ConsumerFactory<String, CreateReview> consumerFactoryCreateReview(String groupId) {
+    private ConsumerFactory<String, CreateDetail> consumerFactoryCreateDetail(String groupId) {
 
         Map<String, Object> props = new HashMap<>();
 
@@ -70,7 +70,7 @@ public class KafkaConsumerConfig {
         props.put(GROUP_ID_CONFIG, groupId);
         props.put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
-        JsonDeserializer<CreateReview> jsonDeserializer = new JsonDeserializer<>(CreateReview.class, false);
+        JsonDeserializer<CreateDetail> jsonDeserializer = new JsonDeserializer<>(CreateDetail.class, false);
         jsonDeserializer.addTrustedPackages("*");
 
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), jsonDeserializer);

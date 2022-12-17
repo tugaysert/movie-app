@@ -1,10 +1,10 @@
-package com.example.reviewservice;
+package com.example.detailservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CreateReviewServiceApplicationTests {
+class CreateDetailServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

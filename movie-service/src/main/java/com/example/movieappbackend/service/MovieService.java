@@ -3,7 +3,7 @@ package com.example.movieappbackend.service;
 
 import com.example.movieappbackend.aspect.TrackTime;
 import com.example.movieappbackend.dtos.*;
-import com.example.movieappbackend.entity.CreateReview;
+import com.example.movieappbackend.entity.CreateDetail;
 import com.example.movieappbackend.entity.Movie;
 import com.example.movieappbackend.exception.EntityNotFoundException;
 import com.example.movieappbackend.exception.ResourceNotFoundException;
@@ -66,8 +66,8 @@ public class MovieService {
 
 
         movie = movieRepository.save(movie);
-        CreateReview createReview = new CreateReview(createMovieRequest.getReview().getText(), movie.getId());
-        CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(FIRST_TOPIC, createReview);
+        CreateDetail createDetail = new CreateDetail(createMovieRequest.getDetail().getText(), movie.getId());
+        CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(FIRST_TOPIC, createDetail);
 
         //synchronous
         //SendResult<String, Object> result = future.get();
@@ -91,7 +91,7 @@ public class MovieService {
     public GetMovieByIdResponse getMovieById(Long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
         String senderMessage = "customerId: " + String.valueOf(movie.getId());
-        //kafkaTemplate2.send("review-transfer", senderMessage);
+        //kafkaTemplate2.send("detail-transfer", senderMessage);
         return new GetMovieByIdResponse.GetMovieByIdResponseBuilder().setMovie(movie).build();
     }
 

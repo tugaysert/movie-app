@@ -1,4 +1,4 @@
-package com.example.reviewservice.model;
+package com.example.detailservice.model;
 
 
 import jakarta.persistence.Column;
@@ -9,8 +9,8 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "review")
-public class Review {
+@Table(name = "detail")
+public class Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +24,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "Detail{" +
                 "id=" + id +
                 ", movieId=" + movieId +
                 ", text='" + text + '\'' +
@@ -60,7 +60,7 @@ public class Review {
         this.text = text;
     }
 
-    public Review(Long id, Long movieId, String text) {
+    public Detail(Long id, Long movieId, String text) {
         this.id = id;
         this.movieId = movieId;
         this.text = text;

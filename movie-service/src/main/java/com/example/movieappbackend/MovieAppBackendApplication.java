@@ -2,7 +2,7 @@ package com.example.movieappbackend;
 
 import com.example.movieappbackend.dtos.CreateMovieRequest;
 
-import com.example.movieappbackend.entity.Review;
+import com.example.movieappbackend.entity.Detail;
 import com.example.movieappbackend.repository.MovieRepository;
 import com.example.movieappbackend.service.MovieService;
 
@@ -62,7 +62,7 @@ public class MovieAppBackendApplication implements CommandLineRunner {
                 .setStar("Movie Star")
                 .setGenre("Movie Genre")
                 .setYear(2020)
-                .setReview(new Review("KASJDIOKSHADLOIKSADJJHASD"))
+                .setDetail(new Detail("KASJDIOKSHADLOIKSADJJHASD"))
                 .build();
         movieService.createMovie(request);
         //System.out.println(movieService.getMovieById(9999L).getMovie().getTitle());;

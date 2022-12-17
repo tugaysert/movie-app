@@ -1,13 +1,13 @@
-package com.example.reviewservice;
+package com.example.detailservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReviewServiceApplication {
+public class DetailServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReviewServiceApplication.class, args);
+		SpringApplication.run(DetailServiceApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.example.reviewservice.model;
+package com.example.detailservice.model;
 
 
 import jakarta.persistence.Column;
@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 
 
 
-public class CreateReview {
+public class CreateDetail {
 
 
     private Long movieId;
@@ -17,13 +17,13 @@ public class CreateReview {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "Detail{" +
                 ", movieId=" + movieId +
                 ", text='" + text + '\'' +
                 '}';
     }
 
-    public CreateReview() {
+    public CreateDetail() {
     }
 
     private String text;
@@ -44,7 +44,7 @@ public class CreateReview {
         this.text = text;
     }
 
-    public CreateReview(Long movieId, String text) {
+    public CreateDetail(Long movieId, String text) {
         this.movieId = movieId;
         this.text = text;
     }
